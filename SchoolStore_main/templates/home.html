@@ -1,0 +1,34 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br><br>
+<div class="container">
+<div class="row">
+        {% for product in products %}
+        <div class="col-md-3 col-lg-3 col-12">
+              <div class="card">
+                <img class="card-img-top" src="{{ product.image.url }}" style="width:295px; height:200px;" alt="{{product.name}}">
+                <div class="card-body">
+                    <div id="nm{{ product.id }}" class="card-title">{{ product.name }}</div>
+                    <div id="price{{ product.id }}" class="card-text">{{ product.price }}</div>
+                    <a href="{% url 'SSapp:prodetail' product.id %}" class="btn btn-warning">View</a>
+                    <a class="btn btn-warning" href="{% url 'Cart:add_cart' product.id %}">Add to cart</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="mx-auto">
+            {% if products.paginator.num_pages > 1 %}
+            <br>
+            <div class="text-center">
+                {% for pg in products.paginator.page_range %}
+                <a href="?page={{pg}}" class="btn btn-light btn-sm {% if products.number == pg %} active {% endif %}">{{pg}}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div><br>
+
+</div>
+</div>
+
+{% endblock %}

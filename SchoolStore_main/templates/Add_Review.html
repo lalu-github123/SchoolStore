@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br>
+<div class="container">
+  <form method="post">
+    {% csrf_token %}
+  <div class="mb-3">
+    <div class="row">
+      <div class="col-md-6 col-12 col-lg-5">
+        <h3>Add Your Reviews & Suggestions</h3><br>
+        <label for="exampleInputEmail1" class="form-label">Your Name</label>
+        <input type="text" name="username" class="form-control" id="exampleInputEmail11" aria-describedby="emailHelp">
+        <label for="exampleInputEmail1" class="form-label">Your Reviews & Suggestions </label>
+        <input type="text" name="review" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% for msg in messages %}
+
+<h3>{{ msg }}</h3>
+
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,33 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br><br>
+<div class="container">
+<div class="row">
+        {% for book in books %}
+        <div class="col-md-3 col-12 col-lg-3 ">
+              <div class="card">
+                <img class="card-img-top" src="{{ book.image.url }}" style="width:295px; height:200px;" alt="{{book.name}}">
+                <div class="card-body">
+                    <div id="nm{{ book.id }}" class="card-title">{{ book.name }}</div>
+                    <div id="price{{ book.id }}" class="card-text">{{ book.price }} (Per Week)</div>
+                    <a class="btn btn-warning" href="{% url 'SSapp:bookrent' %}">Rent Now</a>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="mx-auto">
+            {% if books.paginator.num_pages > 1 %}
+            <br>
+            <div class="text-center">
+                {% for pg in books.paginator.page_range %}
+                <a href="?page={{pg}}" class="btn btn-light btn-sm {% if books.number == pg %} active {% endif %}">{{pg}}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+        </div><br>
+
+</div>
+</div>
+
+{% endblock %}

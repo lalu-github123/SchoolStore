@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-12 offset-md-3">
+        {% for msg in messages %}
+
+              <h3>{{msg}}</h3>
+              <h5>Click <a href="{% url 'SSapp:home' %}">Here</a>To Go To Home Page</h5>
+              <a class="btn btn-danger" href="{% url 'SSapp:home' %}">Logout</a>
+
+        {% endfor %}
+
+      <div class="card w-200">
+        <div class="card-header text-white bg-info">
+          <div class="card-title">
+           <h2>Book Rental Form</h2>
+          </div>
+        </div>
+        <div class="card-body ">
+          <form method="POST" enctype="multipart/form-data">
+             {% csrf_token %}
+
+           <div class="mb-2">
+               <label> Starting Date </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700"><input type="date" name="dob"><br><br></div>
+           </div>
+
+          <div class="mb-2">
+               <label> Submitting Date </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700"><input type="date" name="dob"><br><br></div>
+          </div>
+            <button class="btn btn-info text-white" type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

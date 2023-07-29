@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-12 offset-md-3">
+        {% for msg in messages %}
+
+              <h3>{{msg}}</h3>
+              <h5>Click <a href="{% url 'SSapp:home' %}">Here</a>To Go To Home Page</h5>
+              <a class="btn btn-danger" href="{% url 'SSapp:home' %}">Logout</a>
+
+        {% endfor %}
+
+      <div class="card w-200">
+        <div class="card-header text-white bg-info">
+          <div class="card-title">
+           <h2>College Store Student Registraion Form</h2>
+          </div>
+        </div>
+        <div class="card-body ">
+          <form method="POST" id="sform" data-courses-url="{% url 'SSapp:ajax_load_courses' %}" enctype="multipart/form-data">
+             {% csrf_token %}
+           <div class="mb-2">
+              <label for="" class="block text-gray-700 text-sm font-bold mb-2" >Your Name</label>
+              <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ form.name }}</div>
+           </div>
+
+           <div class="mb-2">
+               <label> Date Of Birth </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+               <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700"><input type="date" name="dob"><br><br></div>
+           </div>
+
+           <div class="mb-2">
+              <label for="" class="block text-gray-700 text-sm font-bold mb-2" >Gender</label>
+              <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ form.gender }}</div>
+           </div>
+
+           <div class="mb-2">
+              <label for="" class="block text-gray-700 text-sm font-bold mb-2" >Mobile Number</label>
+              <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ form.phone_number }}</div>
+           </div>
+
+           <div class="mb-2">
+              <label for="" class="block text-gray-700 text-sm font-bold mb-2" >E-mail</label>
+              <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ form.mail }}</div>
+           </div>
+
+           <div class="mb-2">
+              <label for="" class="block text-gray-700 text-sm font-bold mb-2" >Address</label>
+              <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ form.address }}</div>
+           </div>
+
+           <div class="mb-2">
+              <label for="" class="block text-gray-700 text-sm font-bold mb-2" >Department</label>
+              <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ form.department }}</div>
+           </div>
+
+           <div class="mb-2">
+              <label for="" class="block text-gray-700 text-sm font-bold mb-2" >Course</label>
+              <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ form.course }}</div>
+           </div>
+
+           <div class="mb-2">
+              <label for="" class="block text-gray-700 text-sm font-bold mb-2" >Purposes</label>
+              <div class="shadow appearance-none border rounded py-2 px-3 mr-10 text-gray-700">{{ form.purpose }}</div>
+           </div>
+
+           <div class="mb-2">
+               <h6>Materials Provide</h6>
+               <form action="/action_page.php">
+                   <input type="checkbox" id="note" name="note" value="note">
+                   <label for="note"> Debit Note Book</label><br>
+                   <input type="checkbox" id="pen" name="pen" value="pen">
+                   <label for="pen"> Pen</label><br>
+                   <input type="checkbox" id="exam" name="exam" value="exam">
+                   <label for="exam"> Exam Papers</label><br><br>
+               </form>
+                <button class="btn btn-info text-white" type="submit">Submit</button>
+
+            </div>
+          </form>
+            <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+   <script>
+    $("#id_department").change(function () {
+        const url = $("#sform").attr("data-courses-url");  // get the url of the `load_cities` view
+        const departmentId = $(this).val();  // get the selected country ID from the HTML input
+
+        $.ajax({                       // initialize an AJAX request
+            url: url,                    // set the url of the request (= /persons/ajax/load-cities/ )
+            data: {
+                'department_id': departmentId       // add the country id to the GET parameters
+            },
+            success: function (data) {   // `data` is the return of the `load_cities` view function
+                $("#id_course").html(data);  // replace the contents of the city input with the data that came from the server
+                /*
+
+                let html_data = '<option value="">---------</option>';
+                data.forEach(function (city) {
+                    html_data += `<option value="${city.id}">${city.name}</option>`
+                });
+                console.log(html_data);
+                $("#id_city").html(html_data);
+
+                */
+            }
+        });
+
+    });
+</script>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

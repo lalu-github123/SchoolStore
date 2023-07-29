@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container">
+  <br>
+  <div class="row">
+    <div class="col-12 col-lg-5 col-md-4 ">
+      <img src="{% static 'images/School1.jpeg' %}" style=" width:500px; height:200;">
+    </div>
+
+    <div class="col-lg-7 col-12 col-md-4">
+      <div class="container">
+        <div class="row">
+          <br>
+          <h2>Your Perfect Study Partner</h2>
+          <b>This is the place Where,you will get all the school products,which you want.The products like notebooks,pen,pencil,eraser,bags,markers,tiiffin box,water bottle,uniform,boxex,scale at reasonable rate that you don't get anywhere,apart from that we are providing so many services. </b>
+          <ul>
+            <a class="btn btn-warning" href="{% url 'SSapp:about' %}">About Us</a>
+
+            <a class="btn btn-warning" href="{% url 'SSapp:allproducts' %}">Our Products</a>
+
+            <a class="btn btn-warning" href="{% url 'SSapp:reviews' %}">Reviews</a>
+
+            <a class="btn btn-warning" href="{% url 'SSapp:add_reviews' %}">Add a Review</a>
+
+            <a class="btn btn-warning" href="{% url 'SSapp:contact' %}">Contacts Us</a>
+          </ul>
+          </div>
+      </div>
+  </div>
+</div>
+  </div>
+</div>
+{% endblock %}

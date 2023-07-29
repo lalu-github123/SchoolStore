@@ -1,0 +1,16 @@
+{%  extends 'base.html' %}
+{% load static %}
+{% block content %}
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-12 ">
+        <h1 align="center" >Customer Reviews</h1>
+       {% for rw in reviews %}
+            <h2><button class="btn btn-primary">{{ rw.name }}</button></h2>
+            <b><p>{{ rw.review }}</p></b>
+       {% endfor %}
+    </div>
+   </div>
+</div>
+{% endblock %}

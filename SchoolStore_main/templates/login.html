@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-12 offset-md-4">
+      <div class="card">
+        <div class="card-header text-white bg-info">
+          <div class="card-title">
+           <h2>Login Page</h2>
+          </div>
+        </div>
+        <div class="card-body">
+          <form method="post">
+             {% csrf_token %}
+            <div class="form-group">
+              <input type="text" name="username" placeholder="Enter Username"><br><br>
+              <input type="password" name="password" placeholder="Enter Password"><br><br>
+              <button class="btn btn-info text-white"  type="submit">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% for msg in messages %}
+
+{{msg}}
+
+{% endfor %}
+{% endblock %}
